@@ -1,0 +1,42 @@
+{
+  "mappings": {
+    "date_detection": false,
+    "numeric_detection": false,
+    "properties": {
+      "id": {
+        "type": "keyword"
+      },
+      "created": {
+        "type": "date"
+      },
+      "updated": {
+        "type": "date"
+      },
+      "version_id": {
+        "type": "keyword"
+      },
+      "uuid": {
+        "type": "keyword"
+      },
+      "metadata": {
+        "properties": {
+          "title": { "type": "text" },
+          "creator": { "type": "text" },
+          "subject": { "type": "text" },
+          "description": { "type": "text" },
+          "publisher": { "type": "text" },
+          "contributor": { "type": "text" },
+          "date": { "type": "date" },
+          "type": { "type": "text" },
+          "format": { "type": "text" },
+          "identifier": { "type": "keyword" },
+          "source": { "type": "text" },
+          "language": { "type": "text" },
+          "relation": { "type": "text" },
+          "coverage": { "type": "text" },
+          "rights": { "type": "text" }
+        }
+      }
+    }
+  }
+}
