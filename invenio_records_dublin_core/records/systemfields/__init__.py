@@ -10,6 +10,7 @@
 
 
 from .context import DublinCorePIDFieldContext
+from .original import OriginalField
 from .providers import DublinCoreRecordProvider
 
-__all__ = ("DublinCoreRecordProvider", "DublinCorePIDFieldContext")
+__all__ = ("DublinCoreRecordProvider", "DublinCorePIDFieldContext", "OriginalField")

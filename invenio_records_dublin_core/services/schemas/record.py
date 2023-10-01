@@ -9,6 +9,7 @@
 """Dublin Core Schemas."""
 
 from invenio_records_resources.services.records.schema import BaseRecordSchema
+from marshmallow.fields import Dict
 from marshmallow_utils.fields import NestedAttribute
 
 from .metadata import DublinCoreMetadataSchema
@@ -18,3 +19,5 @@ class DublinCoreRecordSchema(BaseRecordSchema):
     """DublinCoreRecordSchema."""
 
     metadata = NestedAttribute(DublinCoreMetadataSchema)
+
+    original = Dict()

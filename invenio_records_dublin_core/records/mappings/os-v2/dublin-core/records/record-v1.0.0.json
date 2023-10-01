@@ -34,7 +34,12 @@
           "language": { "type": "text" },
           "relation": { "type": "text" },
           "coverage": { "type": "text" },
-          "rights": { "type": "text" }
+          "rights": { "type": "keyword" }
+        }
+      },
+      "original": {
+        "properties": {
+          "schema": { "type": "keyword" }
         }
       }
     }

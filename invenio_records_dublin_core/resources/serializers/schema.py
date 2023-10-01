@@ -20,4 +20,4 @@ class DublinCoreSchema(Schema):
     class Meta:
         """Meta class to accept unknwon fields."""
 
-        additional = ("metadata",)
+        additional = ("metadata", "original")

@@ -14,7 +14,11 @@ from invenio_records_resources.records.api import Record
 from invenio_records_resources.records.systemfields import IndexField, PIDField
 
 from .models import DublinCoreMetadata
-from .systemfields import DublinCorePIDFieldContext, DublinCoreRecordProvider
+from .systemfields import (
+    DublinCorePIDFieldContext,
+    DublinCoreRecordProvider,
+    OriginalField,
+)
 
 
 class DublinCoreRecord(Record):
@@ -37,3 +41,5 @@ class DublinCoreRecord(Record):
         provider=DublinCoreRecordProvider,
         context_cls=DublinCorePIDFieldContext,
     )
+
+    original = OriginalField()

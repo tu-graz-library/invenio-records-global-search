@@ -8,9 +8,7 @@
 
 """Configs."""
 
-from enum import Enum
-
-from invenio_records_resources.services.records.facets import TermsFacet
+from .services.facets import data_model
 
 
 # TODO: use invenio-i18n gettext functionality
@@ -19,36 +17,11 @@ def _(x):
     return x
 
 
-# copied from rdm-records
-class AccessStatusEnum(Enum):
-    """Enum defining access statuses."""
-
-    OPEN = "open"
-
-    EMBARGOED = "embargoed"
-
-    RESTRICTED = "restricted"
-
-    METADATA_ONLY = "metadata-only"
-
-
-# copied from rdm-records
-access_status = TermsFacet(
-    field="access.status",
-    label=_("Access status"),
-    value_labels={
-        AccessStatusEnum.OPEN.value: _("Open"),
-        AccessStatusEnum.EMBARGOED.value: _("Embargoed"),
-        AccessStatusEnum.RESTRICTED.value: _("Restricted"),
-        AccessStatusEnum.METADATA_ONLY.value: _("Metadata-only"),
-    },
-)
-
 DUBLIN_CORE_FACETS = {
-    "access_status": {
-        "facet": access_status,
+    "data_model": {
+        "facet": data_model,
         "ui": {
-            "field": "access.status",
+            "field": "original.schema",
         },
     },
 }
@@ -65,7 +38,7 @@ DUBLIN_CORE_SORT_OPTIONS = {
 }
 
 DUBLIN_CORE_SEARCH = {
-    "facets": ["access_status"],
+    "facets": ["data_model"],
     "sort": [
         "bestmatch",
         "newest",

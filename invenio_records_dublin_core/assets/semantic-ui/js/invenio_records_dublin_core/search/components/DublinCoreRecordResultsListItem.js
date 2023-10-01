@@ -30,7 +30,7 @@ export const DublinCoreRecordResultsListItem = ({ result, index }) => {
 
   const creators = ["TODO"];
 
-  const viewLink = get(result, "metadata.original_link");
+  const viewLink = get(result, "original.view");
 
   const [error, setError] = useState("");
 
@@ -68,8 +68,8 @@ export const DublinCoreRecordResultsListItem = ({ result, index }) => {
           </div>
         </Item.Extra>
         <Item.Header href={viewLink}>
-          {titles.map((title) => (
-            <span>{title}</span>
+          {titles.map((title, index) => (
+            <span key={index}>{title}</span>
           ))}
         </Item.Header>
         <Item.Meta>

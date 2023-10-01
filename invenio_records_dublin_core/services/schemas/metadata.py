@@ -8,10 +8,25 @@
 
 """Dublin Core Metadata Schema."""
 from marshmallow import Schema, validate
+from marshmallow.fields import String
 from marshmallow_utils.fields import SanitizedUnicode
 
 
 class DublinCoreMetadataSchema(Schema):
     """DublinCoreMetadataSchema."""
 
+    contributor = String()
     title = SanitizedUnicode(required=True, validate=validate.Length(min=3))
+    creator = String(required=True)
+    identifier = String(required=True)
+    relation = String()
+    right = String(required=True)
+    date = String()
+    subject = String()
+    description = String()
+    publisher = String()
+    type = String()
+    source = String()
+    language = String()
+    location = String()
+    format = String()

@@ -19,9 +19,11 @@ from invenio_records_resources.services.base.config import (
     FromConfigSearchOptions,
     SearchOptionsMixin,
 )
+from invenio_records_resources.services.records.components import MetadataComponent
 
-from ..config import access_status
 from ..records import DublinCoreRecord
+from .components import OriginalComponent
+from .facets import data_model
 from .permissions import DublinCoreRecordPermissionPolicy
 from .schemas import DublinCoreRecordSchema
 
@@ -30,7 +32,7 @@ class DublinCoreSearchOptions(SearchOptions, SearchOptionsMixin):
     """Search options for record search."""
 
     facets = {
-        "access_status": access_status,
+        "data_model": data_model,
     }
 
 
@@ -55,3 +57,8 @@ class DublinCoreRecordServiceConfig(RecordServiceConfig, ConfiguratorMixin):
         "DUBLIN_CORE_FACETS",
         search_option_cls=DublinCoreSearchOptions,
     )
+
+    components = [
+        MetadataComponent,
+        OriginalComponent,
+    ]
