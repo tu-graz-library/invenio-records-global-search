@@ -18,7 +18,7 @@ export const DublinCoreRecordResultsListItem = ({ result, index }) => {
   const publicationDate = "TODO";
   const createdDate = "TODO";
 
-  const titles = [get(result, "metadata.title", "No titles")];
+  const titles = get(result, "metadata.titles", ["No titles"]);
 
   const accessId = "TODO";
   const accessIcon = "TODO";
