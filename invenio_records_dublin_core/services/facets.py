@@ -15,3 +15,28 @@ data_model = TermsFacet(
     field="original.schema",
     label=_("DataModel"),
 )
+
+subjects = TermsFacet(
+    field="metadata.subjects",
+    label=_("Subjects"),
+)
+
+publishers = TermsFacet(
+    field="metadata.publishers",
+    label=_("Publishers"),
+)
+
+formats = TermsFacet(
+    field="metadata.formats",
+    label=_("Formats"),
+)
+
+rights = TermsFacet(
+    field="metadata.rights",
+    label=_("Rights"),
+)
+
+types = TermsFacet(
+    field="metadata.types",
+    label=_("Types"),
+)

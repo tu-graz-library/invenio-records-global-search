@@ -8,6 +8,15 @@
 
 """Components."""
 
+
+from invenio_records_resources.services.records.components import MetadataComponent
+
 from .original import OriginalComponent
 
-__all__ = ("OriginalComponent",)
+DefaultRecordsComponents = [
+    MetadataComponent,
+    OriginalComponent,
+]
+
+
+__all__ = ("DefaultRecordsComponents",)

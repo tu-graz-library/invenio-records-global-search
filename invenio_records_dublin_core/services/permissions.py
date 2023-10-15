@@ -7,13 +7,16 @@
 # details.
 
 """Dublin Core permission policy."""
-from invenio_records_permissions.generators import AnyUser, SystemProcess
+from typing import ClassVar
+
+from invenio_records_permissions.generators import AnyUser, RecordOwners, SystemProcess
 from invenio_records_permissions.policies.records import RecordPermissionPolicy
 
 
 class DublinCoreRecordPermissionPolicy(RecordPermissionPolicy):
     """DublinCoreRecordPermissionPolicy."""
 
-    can_create = [SystemProcess()]
+    can_create: ClassVar = [SystemProcess()]
 
-    can_search = [AnyUser(), SystemProcess()]
+    can_search: ClassVar = [AnyUser(), SystemProcess()]
+    can_read: ClassVar = [AnyUser(), RecordOwners()]

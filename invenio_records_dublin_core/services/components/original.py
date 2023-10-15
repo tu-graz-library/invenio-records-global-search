@@ -11,15 +11,16 @@
 from invenio_records_resources.services.records.components.base import ServiceComponent
 
 
+# TODO: move that to invenio-global-search. this is not data-model specific
 class OriginalComponent(ServiceComponent):
     """Service component for metadata."""
 
     def create(self, identity, data=None, record=None, errors=None, **kwargs):
         """Inject parsed view to the record."""
-        print(f"OriginalComponent.create data: {data}, record: {record}")
+        # print(f"OriginalComponent.create data: {data}, record: {record}")
         record.original = data.get("original", "")
 
     def update(self, identity, data=None, record=None, **kwargs):
         """Inject parsed view to the record."""
-        print("OriginalComponent.update")
+        # print("OriginalComponent.update")
         record.original = data.get("original", "")

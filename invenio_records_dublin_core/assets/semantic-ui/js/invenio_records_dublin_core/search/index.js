@@ -28,7 +28,7 @@ import {
 const appName = "DublinCoreRecords.Search";
 
 const ContribSearchAppFacetsWithConfig = parametrize(ContribSearchAppFacets, {
-  toggle: true,
+  toggle: false,
 });
 
 const RDMRecordSearchBarContainerWithConfig = parametrize(

@@ -39,11 +39,11 @@ class InvenioRecordsDublinCore:
     def init_services(self, app: Flask) -> None:
         """Initialize services."""
         service_config = DublinCoreRecordServiceConfig.build(app)
-        self.record_service = DublinCoreRecordService(config=service_config)
+        self.records_service = DublinCoreRecordService(config=service_config)
 
     def init_resources(self, app: Flask) -> None:
         """Initialize resources."""
-        self.record_resource = DublinCoreRecordResource(
-            service=self.record_service,
+        self.records_resource = DublinCoreRecordResource(
+            service=self.records_service,
             config=DublinCoreRecordResourceConfig,
         )

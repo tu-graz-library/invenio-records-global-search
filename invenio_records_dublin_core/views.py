@@ -24,19 +24,20 @@ def init(state):
     # Invenio-Records-Resources might not have been initialized.
     registry = app.extensions["invenio-records-resources"].registry
     ext = app.extensions["invenio-records-dublin-core"]
-    registry.register(ext.record_service, service_id="dublin-core-record")
+    registry.register(ext.records_service, service_id="dublin-core-record")
 
 
 def create_blueprint(app: Flask) -> Blueprint:
     """Create Blueprint."""
     routes = {
-        "record-search": "/dublin-core/search",
+        "record-search": "/search",
     }
 
     blueprint = Blueprint(
         "invenio_records_dublin_core",
         __name__,
         template_folder="templates",
+        url_prefix="/dublin-core",
     )
     blueprint.add_url_rule(routes["record-search"], view_func=search)
     blueprint.app_context_processor(search_app_context)
@@ -66,4 +67,4 @@ def search() -> str:
 
 def create_record_bp(app: Flask) -> Blueprint:
     """Create records blueprint."""
-    return app.extensions["invenio-records-dublin-core"].record_resource.as_blueprint()
+    return app.extensions["invenio-records-dublin-core"].records_resource.as_blueprint()

@@ -8,6 +8,8 @@
 
 """Dublin Core Service Config."""
 
+from typing import ClassVar
+
 from invenio_records_resources.services import (
     RecordServiceConfig,
     SearchOptions,
@@ -19,11 +21,10 @@ from invenio_records_resources.services.base.config import (
     FromConfigSearchOptions,
     SearchOptionsMixin,
 )
-from invenio_records_resources.services.records.components import MetadataComponent
 
 from ..records import DublinCoreRecord
-from .components import OriginalComponent
-from .facets import data_model
+from .components import DefaultRecordsComponents
+from .facets import data_model, formats, publishers, rights, subjects, types
 from .permissions import DublinCoreRecordPermissionPolicy
 from .schemas import DublinCoreRecordSchema
 
@@ -31,8 +32,13 @@ from .schemas import DublinCoreRecordSchema
 class DublinCoreSearchOptions(SearchOptions, SearchOptionsMixin):
     """Search options for record search."""
 
-    facets = {
+    facets: ClassVar = {
         "data_model": data_model,
+        "subjects": subjects,
+        "publishers": publishers,
+        "formats": formats,
+        "rights": rights,
+        "types": types,
     }
 
 
@@ -57,8 +63,7 @@ class DublinCoreRecordServiceConfig(RecordServiceConfig, ConfiguratorMixin):
         "DUBLIN_CORE_FACETS",
         search_option_cls=DublinCoreSearchOptions,
     )
-
-    components = [
-        MetadataComponent,
-        OriginalComponent,
-    ]
+    components = FromConfig(
+        "DUBLIN_CORE_RECORDS_SERVICE_COMPONENTS",
+        default=DefaultRecordsComponents,
+    )
