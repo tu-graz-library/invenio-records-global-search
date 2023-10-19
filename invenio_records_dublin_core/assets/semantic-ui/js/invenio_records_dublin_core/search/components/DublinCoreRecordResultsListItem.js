@@ -14,23 +14,27 @@ import { i18next } from "../../../../translations/invenio_records_dublin_core/i1
 export const DublinCoreRecordResultsListItem = ({ result, index }) => {
   const version = get(result, "revision_id", null);
 
-  const publishedAt = "TODO";
-  const publicationDate = "TODO";
-  const createdDate = "TODO";
+  const publishedAt = undefined;
+  const publicationDate = get(result, "metadata.dates", [
+    "No publication date",
+  ])[0];
+  const createdDate = get(result, "created_date_l10n_long");
 
   const titles = get(result, "metadata.titles", ["No titles"]);
 
-  const accessId = "TODO";
-  const accessIcon = "TODO";
-  const accessStatus = "TODO";
+  const accessId = get(result, "access_status.id");
+  const accessIcon = get(result, "access_status.icon");
+  const accessStatus = get(result, "access_status.title_l10n");
 
-  const resourceType = "TODO";
-  const description = "TODO";
-  const subjects = ["TODO"];
+  const resourceType = get(result, "metadata.types", ["Not defined"])[0];
+  const description = get(result, "metadata.descriptions", []).join(" ");
+  const subjects = get(result, "metadata.subjects", []);
 
-  const creators = ["TODO"];
+  const creators = get(result, "metadata.creators", ["No creators"]);
 
   const viewLink = get(result, "original.view");
+
+  const schema = get(result, "original.schema_l10n");
 
   const [error, setError] = useState("");
 
@@ -56,6 +60,7 @@ export const DublinCoreRecordResultsListItem = ({ result, index }) => {
                 {resourceType}
               </Label>
             )}
+            <Label size="tiny">{schema}</Label>
             <Button
               basic
               compact
@@ -75,7 +80,7 @@ export const DublinCoreRecordResultsListItem = ({ result, index }) => {
         <Item.Meta>
           {creators.map((creator, index) => (
             <span key={index}>
-              {creator.a}
+              {creator}
               {index < creators.length - 1 && ","}
             </span>
           ))}
@@ -86,13 +91,13 @@ export const DublinCoreRecordResultsListItem = ({ result, index }) => {
         <Item.Extra>
           {subjects.map((subject, index) => (
             <Label key={index} size="tiny">
-              {subject.miscellaneous_information}
+              {subject}
             </Label>
           ))}
           {createdDate && (
             <div>
               <small>
-                {i18next.t("Uploaded on")}
+                {i18next.t("Uploaded on ")}
                 <span>{createdDate}</span>
               </small>
             </div>

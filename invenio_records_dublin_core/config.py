@@ -71,3 +71,6 @@ DUBLIN_CORE_SEARCH = {
 }
 
 DUBLIN_CORE_BASE_TEMPLATE = "invenio_records_dublin_core/base.html"
+
+DUBLIN_CORE_ORIGINAL_SCHEMAS = {}
+"""Configure the original schema names."""

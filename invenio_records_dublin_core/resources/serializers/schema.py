@@ -8,6 +8,7 @@
 
 """Invenio Dublin Core Record Resource schema."""
 
+from flask import current_app
 from marshmallow import Schema, fields
 from marshmallow_utils.fields import SanitizedUnicode
 
@@ -21,6 +22,25 @@ def access_status(obj: dict) -> dict:
     }
 
 
+def created_date_l10n_long(obj: dict) -> str:
+    """Created date l10n long."""
+    return obj["metadata"]["dates"][0]
+
+
+class OriginalSchema(Schema):
+    """Original Schema."""
+
+    view = fields.String(attribute="view")
+    schema_l10n = fields.Method("get_schema_l10n")
+
+    def get_schema_l10n(self, obj: dict) -> str:
+        """Get schema l10n."""
+        schemas = current_app.config.get("DUBLIN_CORE_ORIGINAL_SCHEMAS", {})
+        for schema_name, schema in schemas.items():
+            if schema_name == obj["schema"]:
+                return schema["name_l10n"]
+
+
 class DublinCoreSchema(Schema):
     """Schema for dumping extra information for the dublin core record."""
 
@@ -28,7 +48,11 @@ class DublinCoreSchema(Schema):
 
     access_status = fields.Function(access_status)
 
+    original = fields.Nested(OriginalSchema, attribute="original")
+
+    created_date_l10n_long = fields.Function(created_date_l10n_long)
+
     class Meta:
         """Meta class to accept unknwon fields."""
 
-        additional = ("metadata", "original")
+        additional = ("metadata",)
