@@ -34,6 +34,14 @@ formats = TermsFacet(
 rights = TermsFacet(
     field="metadata.rights",
     label=_("Rights"),
+    value_labels={
+        "https://creativecommons.org/licenses/by/4.0": _("CC BY 4.0"),
+        "https://creativecommons.org/licenses/by-sa/4.0": _("CC BY-SA 4.0"),
+        "https://creativecommons.org/licenses/by-nd/4.0": _("CC BY-ND 4.0"),
+        "https://creativecommons.org/licenses/by-nc/4.0": _("CC BY-NC 4.0"),
+        "https://creativecommons.org/licenses/by-nc-sa/4.0": _("CC BY-NC-SA 4.0"),
+        "https://creativecommons.org/licenses/by-nc-nd/4.0": _("CC BY-NC-ND 4.0"),
+    },
 )
 
 types = TermsFacet(
