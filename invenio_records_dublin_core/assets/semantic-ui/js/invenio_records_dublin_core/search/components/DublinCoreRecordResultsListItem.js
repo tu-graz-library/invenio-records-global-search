@@ -36,12 +36,6 @@ export const DublinCoreRecordResultsListItem = ({ result, index }) => {
 
   const schema = get(result, "original.schema_l10n");
 
-  const [error, setError] = useState("");
-
-  const handleError = (errorMessage) => {
-    setError(errorMessage);
-  };
-
   return (
     <Item key={index}>
       <Item.Content>

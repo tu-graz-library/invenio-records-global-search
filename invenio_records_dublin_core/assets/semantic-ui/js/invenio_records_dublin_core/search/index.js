@@ -21,7 +21,7 @@ import {
   ContribBucketAggregationValuesElement,
 } from "@js/invenio_search_ui/components";
 import {
-  DublinCoreRecordResultsGridItem,
+  // DublinCoreRecordResultsGridItem,
   DublinCoreRecordResultsListItem,
 } from "./components";
 
@@ -41,13 +41,13 @@ const RDMRecordSearchBarContainerWithConfig = parametrize(
 const initSearchApp = createSearchAppInit({
   "BucketAggregation.element": ContribBucketAggregationElement,
   "BucketAggregationValues.element": ContribBucketAggregationValuesElement,
-  //"EmptyResults.element": RDMEmptyResults,
-  "ResultsGrid.item": DublinCoreRecordResultsGridItem,
+  // "EmptyResults.element": RDMEmptyResults,
+  // "ResultsGrid.item": DublinCoreRecordResultsGridItem,
   "ResultsList.item": DublinCoreRecordResultsListItem,
   "SearchApp.facets": ContribSearchAppFacetsWithConfig,
   "SearchApp.searchbarContainer": RDMRecordSearchBarContainerWithConfig,
   "SearchFilters.ToggleComponent": RDMToggleComponent,
-  //"Error.element": RDMErrorComponent,
+  // "Error.element": RDMErrorComponent,
   "Count.element": RDMCountComponent,
-  //"SearchFilters.Toggle.element": RDMToggleComponent,
+  // "SearchFilters.Toggle.element": RDMToggleComponent,
 });

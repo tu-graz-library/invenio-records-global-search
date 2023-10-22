@@ -47,7 +47,10 @@ class DublinCoreRecordServiceConfig(RecordServiceConfig, ConfiguratorMixin):
 
     record_cls = DublinCoreRecord
 
-    schema = DublinCoreRecordSchema
+    schema = FromConfig(
+        "DUBLIN_CORE_SCHEMA",
+        default=DublinCoreRecordSchema,
+    )
 
     permission_policy_cls = FromConfig(
         "DUBLIN_CORE_PERMISSION_POLICY",
