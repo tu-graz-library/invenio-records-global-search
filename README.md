@@ -1,1 +1,1 @@
-# invenio-records-dublin-core
+# invenio-records-global-search

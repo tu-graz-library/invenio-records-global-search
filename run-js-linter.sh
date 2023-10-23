@@ -4,7 +4,7 @@
 # Copyright (C) 2022 CERN.
 # Copyright (C) 2023 Graz University of Technology.
 #
-# invenio-records-dublin-core is free software; you can redistribute it and/or
+# invenio-records-global-search is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
@@ -24,7 +24,7 @@ do
 	    npm install --no-save --no-package-lock @inveniosoftware/eslint-config-invenio@^2.0.0;;
 	-f|--fix)
 	    printf "${GREEN}Run eslint${NC}\n";
-            npx eslint -c invenio_records_dublin_core/assets/semantic-ui/js/invenio_records_dublin_core/.eslintrc.yml invenio_records_dublin_core/**/*.js --fix;;
+            npx eslint -c invenio_records_global_search/assets/semantic-ui/js/invenio_records_global_search/.eslintrc.yml invenio_records_global_search/**/*.js --fix;;
 	*)
 	    printf "Argument ${RED}$arg${NC} not supported\n"
 	    exit;;
@@ -34,5 +34,5 @@ done
 printf "${GREEN}Run eslint${NC}\n"
 
 npx eslint \
-    -c invenio_records_dublin_core/assets/semantic-ui/js/invenio_records_dublin_core/.eslintrc.yml \
-    invenio_records_dublin_core/**/*.js
+    -c invenio_records_global_search/assets/semantic-ui/js/invenio_records_global_search/.eslintrc.yml \
+    invenio_records_global_search/**/*.js
