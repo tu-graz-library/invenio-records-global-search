@@ -16,7 +16,7 @@ class GlobalSearchMetadataSchema(Schema):
     """GlobalSearchMetadataSchema."""
 
     contributors = List(String())
-    titles = List(SanitizedUnicode(required=True, validate=validate.Length(min=3)))
+    titles = List(SanitizedUnicode(required=True))
     creators = List(String(required=True))
     identifiers = List(String(required=True))
     relations = List(String())
