@@ -19,12 +19,15 @@ def access_status(obj: dict) -> dict:
         "id": "open",
         "icon": "unlock",
         "title_l10n": "Open",
+        "description_l10n": "Open",
     }
 
 
 def created_date_l10n_long(obj: dict) -> str:
     """Created date l10n long."""
-    return obj["metadata"]["dates"][0]
+    if "dates" in obj["metadata"] and len(obj["metadata"]["dates"]) > 0:
+        return obj["metadata"]["dates"][0]
+    return "N/A"
 
 
 class OriginalSchema(Schema):
