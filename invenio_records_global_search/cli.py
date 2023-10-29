@@ -9,6 +9,7 @@
 """CLI."""
 
 import click
+from flask import current_app
 from flask.cli import with_appcontext
 from invenio_access.permissions import system_identity
 
@@ -30,3 +31,11 @@ def rebuild_index() -> None:
     service.rebuild_index(identity=system_identity)
 
     click.secho("Reindexed records!", fg="green")
+
+
+@global_search.command()
+@with_appcontext
+def rebuild_database() -> None:
+    """Rebuild database."""
+    for func in current_app.config.get("GLOBAL_SEARCH_REBUILD_DATABASE", []):
+        func()
