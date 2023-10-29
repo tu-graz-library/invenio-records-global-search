@@ -14,4 +14,15 @@ from invenio_pidstore.providers.recordid_v2 import RecordIdProviderV2
 class GlobalSearchRecordProvider(RecordIdProviderV2):
     """GlobalSearchRecordProvider."""
 
-    pid_type = "dc"
+    pid_type = "gs"
+
+    @classmethod
+    def generate_id(cls, options=None):
+        """Generate id."""
+        return cls.gs_pid
+
+    @classmethod
+    def create(cls, object_type=None, object_uuid=None, options=None, **kwargs):
+        """Create."""
+        cls.gs_pid = kwargs["record"]["gs_pid"]
+        return super().create(object_type, object_uuid, options, **kwargs)

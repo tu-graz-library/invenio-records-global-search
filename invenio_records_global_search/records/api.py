@@ -45,3 +45,11 @@ class GlobalSearchRecord(Record):
     )
 
     original = OriginalField()
+
+    gs_pid = None
+
+    @classmethod
+    def create(cls, data, id_=None, **kwargs):
+        """Create."""
+        data["gs_pid"] = cls.gs_pid
+        return super().create(data, id_, **kwargs)

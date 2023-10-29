@@ -8,10 +8,10 @@
 
 """Global Search PID context."""
 
-from invenio_records.systemfields import RelatedModelFieldContext
+from invenio_records_resources.records.systemfields.pid import PIDFieldContext
 
 
-class GlobalSearchPIDFieldContext(RelatedModelFieldContext):
+class GlobalSearchPIDFieldContext(PIDFieldContext):
     """GlobalSearchPIDFieldContext."""
 
-    pid_type = "dc"
+    pid_type = "gs"

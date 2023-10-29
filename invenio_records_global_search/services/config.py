@@ -66,6 +66,7 @@ class GlobalSearchRecordServiceConfig(RecordServiceConfig, ConfiguratorMixin):
         "GLOBAL_SEARCH_FACETS",
         search_option_cls=GlobalSearchSearchOptions,
     )
+
     components = FromConfig(
         "GLOBAL_SEARCH_RECORDS_SERVICE_COMPONENTS",
         default=DefaultRecordsComponents,

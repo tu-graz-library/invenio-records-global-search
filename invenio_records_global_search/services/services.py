@@ -9,8 +9,28 @@
 """Global Search Services."""
 
 
+from invenio_pidstore.errors import PIDDoesNotExistError
 from invenio_records_resources.services import RecordService
+from invenio_records_resources.services.uow import unit_of_work
 
 
 class GlobalSearchRecordService(RecordService):
     """Global search record service."""
+
+    @unit_of_work()
+    def create_or_update(self, identity, data, uow=None, expand=False):
+        """Create a record.
+
+        :param identity: Identity of user creating the record.
+        :param data: Input data according to the data schema.
+        """
+        gs_pid = "gs-" + data["original"]["pid"]
+
+        try:
+            # only to check if a exists already
+            self.record_cls.pid.resolve(gs_pid)
+
+            return self.update(identity, id_=gs_pid, data=data)
+        except PIDDoesNotExistError:
+            self.record_cls.gs_pid = gs_pid
+            return self._create(self.record_cls, identity, data, uow=uow, expand=expand)
