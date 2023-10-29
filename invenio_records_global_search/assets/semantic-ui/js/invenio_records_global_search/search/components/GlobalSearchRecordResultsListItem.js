@@ -30,7 +30,14 @@ export const GlobalSearchRecordResultsListItem = ({ result, index }) => {
   const description = get(result, "metadata.descriptions", []).join(" ");
   const subjects = get(result, "metadata.subjects", []);
 
-  const creators = get(result, "metadata.creators", ["No creators"]);
+  let creators = get(result, "metadata.creators", ["No creators"]);
+  const contributors = get(result, "metadata.contributors", [
+    "No contributors",
+  ]);
+
+  if (creators[0] == "No creators") {
+    creators = contributors;
+  }
 
   const viewLink = get(result, "original.view");
 
