@@ -62,15 +62,6 @@ export const GlobalSearchRecordResultsListItem = ({ result, index }) => {
               </Label>
             )}
             <Label size="tiny">{schema}</Label>
-            <Button
-              basic
-              compact
-              size="small"
-              floated="right"
-              icon="eye"
-              content={i18next.t("View")}
-              href={viewLink}
-            />
           </div>
         </Item.Extra>
         <Item.Header href={viewLink}>
