@@ -16,7 +16,7 @@ from invenio_records_permissions.policies.records import RecordPermissionPolicy
 class GlobalSearchRecordPermissionPolicy(RecordPermissionPolicy):
     """GlobalSearchRecordPermissionPolicy."""
 
-    can_create: ClassVar = [SystemProcess()]
+    can_create: ClassVar = [AnyUser(), SystemProcess()]
 
     can_search: ClassVar = [AnyUser(), SystemProcess()]
     can_read: ClassVar = [AnyUser(), RecordOwners()]
