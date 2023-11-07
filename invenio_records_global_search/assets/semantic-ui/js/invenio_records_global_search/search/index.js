@@ -17,12 +17,12 @@ import {
 } from "@js/invenio_app_rdm/search/components";
 import {
   ContribSearchAppFacets,
-  ContribBucketAggregationElement,
   ContribBucketAggregationValuesElement,
 } from "@js/invenio_search_ui/components";
 import {
   // GlobalSearchRecordResultsGridItem,
   GlobalSearchRecordResultsListItem,
+  GlobalSearchBucketAggregationElement,
 } from "./components";
 
 const appName = "GlobalSearchRecords.Search";
@@ -39,7 +39,7 @@ const RDMRecordSearchBarContainerWithConfig = parametrize(
 );
 
 const initSearchApp = createSearchAppInit({
-  "BucketAggregation.element": ContribBucketAggregationElement,
+  "BucketAggregation.element": GlobalSearchBucketAggregationElement,
   "BucketAggregationValues.element": ContribBucketAggregationValuesElement,
   // "EmptyResults.element": RDMEmptyResults,
   // "ResultsGrid.item": GlobalSearchRecordResultsGridItem,

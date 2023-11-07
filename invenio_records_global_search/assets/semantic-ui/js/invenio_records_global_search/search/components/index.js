@@ -8,3 +8,4 @@
 
 export { GlobalSearchRecordResultsGridItem } from "./GlobalSearchRecordResultsGridItem";
 export { GlobalSearchRecordResultsListItem } from "./GlobalSearchRecordResultsListItem";
+export { GlobalSearchBucketAggregationElement } from "./GlobalSearchBucketAggregationElement";
