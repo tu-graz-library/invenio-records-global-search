@@ -22,6 +22,7 @@ import {
 import {
   // GlobalSearchRecordResultsGridItem,
   GlobalSearchRecordResultsListItem,
+  GlobalSearchEmptyResults,
   GlobalSearchBucketAggregationElement,
 } from "./components";
 
@@ -41,7 +42,7 @@ const RDMRecordSearchBarContainerWithConfig = parametrize(
 const initSearchApp = createSearchAppInit({
   "BucketAggregation.element": GlobalSearchBucketAggregationElement,
   "BucketAggregationValues.element": ContribBucketAggregationValuesElement,
-  // "EmptyResults.element": RDMEmptyResults,
+  "EmptyResults.element": GlobalSearchEmptyResults,
   // "ResultsGrid.item": GlobalSearchRecordResultsGridItem,
   "ResultsList.item": GlobalSearchRecordResultsListItem,
   "SearchApp.facets": ContribSearchAppFacetsWithConfig,
