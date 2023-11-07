@@ -50,5 +50,4 @@ const initSearchApp = createSearchAppInit({
   "SearchFilters.ToggleComponent": RDMToggleComponent,
   // "Error.element": RDMErrorComponent,
   "Count.element": RDMCountComponent,
-  // "SearchFilters.Toggle.element": RDMToggleComponent,
 });
