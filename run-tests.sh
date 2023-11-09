@@ -57,7 +57,7 @@ export LC_TIME=en_US.UTF-8
 
 ruff .
 
-python -m setup extract_message --output-file /dev/null
+python -m setup extract_messages --output-file /dev/null
 
 python -m check_manifest
 python -m sphinx.cmd.build -qnNW docs docs/_build/html
