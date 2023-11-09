@@ -8,19 +8,33 @@
 
 """Original Component."""
 
+from __future__ import annotations
+
+from flask_principal import Identity
+from invenio_records_resources.records.api import Record
 from invenio_records_resources.services.records.components.base import ServiceComponent
 
 
-# TODO: move that to invenio-global-search. this is not data-model specific
 class OriginalComponent(ServiceComponent):
     """Service component for metadata."""
 
-    def create(self, identity, data=None, record=None, errors=None, **kwargs):
+    def create(
+        self,
+        _: Identity,
+        data: dict | None = None,
+        record: Record | None = None,
+        errors: dict | None = None,  # noqa: ARG002
+        **__: dict,
+    ) -> None:
         """Inject parsed view to the record."""
-        # print(f"OriginalComponent.create data: {data}, record: {record}")
         record.original = data.get("original", "")
 
-    def update(self, identity, data=None, record=None, **kwargs):
+    def update(
+        self,
+        _: Identity,
+        data: dict | None = None,
+        record: Record | None = None,
+        **__: dict,
+    ) -> None:
         """Inject parsed view to the record."""
-        # print("OriginalComponent.update")
         record.original = data.get("original", "")

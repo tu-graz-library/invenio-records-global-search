@@ -8,17 +8,27 @@
 
 """Global Search Services."""
 
+from __future__ import annotations
 
+from flask_principal import Identity
 from invenio_pidstore.errors import PIDDoesNotExistError
 from invenio_records_resources.services import RecordService
-from invenio_records_resources.services.uow import unit_of_work
+from invenio_records_resources.services.records.results import RecordItem
+from invenio_records_resources.services.uow import UnitOfWork, unit_of_work
 
 
 class GlobalSearchRecordService(RecordService):
     """Global search record service."""
 
     @unit_of_work()
-    def create_or_update(self, identity, data, uow=None, expand=False):
+    def create_or_update(
+        self,
+        identity: Identity,
+        data: dict,
+        uow: UnitOfWork | None = None,
+        *,
+        expand: bool = False,
+    ) -> RecordItem:
         """Create a record.
 
         :param identity: Identity of user creating the record.

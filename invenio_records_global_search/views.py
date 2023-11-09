@@ -17,7 +17,7 @@ blueprint = Blueprint("invenio_records_global_search_ext", __name__)
 
 
 @blueprint.record_once
-def init(state):
+def init(state) -> None:  # noqa: ANN001
     """Init app."""
     app = state.app
     # Register services - cannot be done in extension because
@@ -27,7 +27,7 @@ def init(state):
     registry.register(ext.records_service, service_id="global-search-record")
 
 
-def create_blueprint(app: Flask) -> Blueprint:
+def create_blueprint(_: Flask) -> Blueprint:
     """Create Blueprint."""
     routes = {
         "record-search": "/search",

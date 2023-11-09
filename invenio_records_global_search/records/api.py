@@ -8,10 +8,12 @@
 
 """Records API."""
 
+from __future__ import annotations
 
 from invenio_records.systemfields import ConstantField, DictField
 from invenio_records_resources.records.api import Record
 from invenio_records_resources.records.systemfields import IndexField, PIDField
+from typing_extensions import Self
 
 from .models import GlobalSearchMetadata
 from .systemfields import (
@@ -32,7 +34,8 @@ class GlobalSearchRecord(Record):
     )
 
     index = IndexField(
-        "global-search-records-record-v1.0.0", search_alias="global-search"
+        "global-search-records-record-v1.0.0",
+        search_alias="global-search",
     )
 
     pids = DictField("pids")
@@ -49,7 +52,7 @@ class GlobalSearchRecord(Record):
     gs_pid = None
 
     @classmethod
-    def create(cls, data, id_=None, **kwargs):
+    def create(cls, data: dict, id_: str | None = None, **kwargs: dict) -> Self:
         """Create."""
         data["gs_pid"] = cls.gs_pid
         return super().create(data, id_, **kwargs)

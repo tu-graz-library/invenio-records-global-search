@@ -6,8 +6,9 @@
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
-"""Dublin Core Metadata Schema."""
-from marshmallow import Schema, validate
+"""Global Search Metadata Schema."""
+
+from marshmallow import Schema
 from marshmallow.fields import List, String
 from marshmallow_utils.fields import SanitizedUnicode
 

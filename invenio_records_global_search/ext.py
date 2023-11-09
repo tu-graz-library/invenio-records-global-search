@@ -27,7 +27,7 @@ class InvenioRecordsGlobalSearch:
         """Flask application initialization."""
         self.init_config(app)
         self.init_services(app)
-        self.init_resources(app)
+        self.init_resources()
         app.extensions["invenio-records-global-search"] = self
 
     def init_config(self, app: Flask) -> None:
@@ -41,7 +41,7 @@ class InvenioRecordsGlobalSearch:
         service_config = GlobalSearchRecordServiceConfig.build(app)
         self.records_service = GlobalSearchRecordService(config=service_config)
 
-    def init_resources(self, app: Flask) -> None:
+    def init_resources(self) -> None:
         """Initialize resources."""
         self.records_resource = GlobalSearchRecordResource(
             service=self.records_service,

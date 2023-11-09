@@ -13,7 +13,7 @@ from marshmallow import Schema, fields
 from marshmallow_utils.fields import SanitizedUnicode
 
 
-def access_status(obj: dict) -> dict:
+def access_status(_: dict) -> dict:
     """Access status."""
     return {
         "id": "open",
@@ -24,7 +24,7 @@ def access_status(obj: dict) -> dict:
 
 
 def created_date_l10n_long(obj: dict) -> str:
-    """Created date l10n long."""
+    """Create date l10n long."""
     if "dates" in obj["metadata"] and len(obj["metadata"]["dates"]) > 0:
         return obj["metadata"]["dates"][0]
     return "N/A"
@@ -42,12 +42,13 @@ class OriginalSchema(Schema):
         for schema_name, schema in schemas.items():
             if schema_name == obj["schema"]:
                 return schema["name_l10n"]
+        return ""
 
 
 class GlobalSearchSchema(Schema):
     """Schema for dumping extra information for the global search record."""
 
-    id = SanitizedUnicode(data_key="id", attribute="id")
+    id = SanitizedUnicode(data_key="id", attribute="id")  # noqa: A003
 
     access_status = fields.Function(access_status)
 

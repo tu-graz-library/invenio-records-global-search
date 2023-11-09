@@ -8,13 +8,22 @@
 
 """Original system field."""
 
+from __future__ import annotations
+
 from invenio_records.systemfields.base import SystemField
+from invenio_records_resources.records.api import Record
 
 
 class OriginalField(SystemField):
     """OriginalField."""
 
-    def __init__(self, key="original", clear_none=False, create_if_missing=True):
+    def __init__(
+        self,
+        key: str = "original",
+        *,
+        clear_none: bool = False,
+        create_if_missing: bool = True,
+    ) -> None:
         """Initialise the dict field.
 
         :param key: Key to set (dot notation supported).
@@ -27,9 +36,6 @@ class OriginalField(SystemField):
         self.create_if_missing = create_if_missing
         super().__init__(key=key)
 
-    def __set__(self, record, value):
+    def __set__(self, record: Record, value: dict | list | str) -> None:
         """Set."""
         self.set_dictkey(record, value, create_if_missing=self.create_if_missing)
-
-    def __get__(self, record, owner=None):
-        """Get."""
