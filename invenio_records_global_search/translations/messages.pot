@@ -7,9 +7,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: invenio-records-global-search 0.1.0\n"
+"Project-Id-Version: invenio-records-global-search 0.2.0\n"
 "Report-Msgid-Bugs-To: info@inveniosoftware.org\n"
-"POT-Creation-Date: 2023-11-09 21:42+0100\n"
+"POT-Creation-Date: 2023-11-23 10:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,51 +26,51 @@ msgstr ""
 msgid "Newest"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:16
+#: invenio_records_global_search/services/facets.py:27
 msgid "DataModel"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:21
+#: invenio_records_global_search/services/facets.py:33
 msgid "Subjects"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:26
+#: invenio_records_global_search/services/facets.py:38
 msgid "Publishers"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:31
+#: invenio_records_global_search/services/facets.py:43
 msgid "Formats"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:36
+#: invenio_records_global_search/services/facets.py:48
 msgid "Rights"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:38
+#: invenio_records_global_search/services/facets.py:50
 msgid "CC BY 4.0"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:39
+#: invenio_records_global_search/services/facets.py:51
 msgid "CC BY-SA 4.0"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:40
+#: invenio_records_global_search/services/facets.py:52
 msgid "CC BY-ND 4.0"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:41
+#: invenio_records_global_search/services/facets.py:53
 msgid "CC BY-NC 4.0"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:42
+#: invenio_records_global_search/services/facets.py:54
 msgid "CC BY-NC-SA 4.0"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:43
+#: invenio_records_global_search/services/facets.py:55
 msgid "CC BY-NC-ND 4.0"
 msgstr ""
 
-#: invenio_records_global_search/services/facets.py:49
+#: invenio_records_global_search/services/facets.py:61
 msgid "Types"
 msgstr ""
 
