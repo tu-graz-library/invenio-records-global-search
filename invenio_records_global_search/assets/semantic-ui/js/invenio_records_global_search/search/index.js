@@ -1,6 +1,6 @@
 // This file is part of Invenio.
 //
-// Copyright (C) 2023 Graz University of Technology.
+// Copyright (C) 2023-2024 Graz University of Technology.
 //
 // invenio-records-global-search is free software; you can redistribute it
 // and/or modify it under the terms of the MIT License; see LICENSE file for
@@ -10,6 +10,7 @@ import { parametrize } from "react-overridable";
 import { createSearchAppInit } from "@js/invenio_search_ui";
 import {
   RDMRecordSearchBarContainer,
+  RDMRecordMultipleSearchBarElement,
   RDMToggleComponent,
   RDMCountComponent,
   RDMErrorComponent,
@@ -47,6 +48,7 @@ const initSearchApp = createSearchAppInit({
   "ResultsList.item": GlobalSearchRecordResultsListItem,
   "SearchApp.facets": ContribSearchAppFacetsWithConfig,
   "SearchApp.searchbarContainer": RDMRecordSearchBarContainerWithConfig,
+  "SearchBar.element": RDMRecordMultipleSearchBarElement,
   "SearchFilters.ToggleComponent": RDMToggleComponent,
   // "Error.element": RDMErrorComponent,
   "Count.element": RDMCountComponent,
