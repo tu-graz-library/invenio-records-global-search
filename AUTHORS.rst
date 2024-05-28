@@ -10,4 +10,4 @@ Authors
 
 Dublin Core data model for InvenioRDM
 
-- TU Graz <christoph.ladurner@ŧugraz.at>
+- TU Graz <christoph.ladurner@tugraz.at>
