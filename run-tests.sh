@@ -4,7 +4,7 @@
 # Copyright (C) 2019-2020 CERN.
 # Copyright (C) 2019-2020 Northwestern University.
 # Copyright (C)      2021 TU Wien.
-# Copyright (C) 2023 Graz University of Technology.
+# Copyright (C) 2023-2024 Graz University of Technology.
 #
 # invenio-records-global-search is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
@@ -55,7 +55,7 @@ fi
 
 export LC_TIME=en_US.UTF-8
 
-ruff .
+ruff check .
 
 python -m setup extract_messages --output-file /dev/null
 
