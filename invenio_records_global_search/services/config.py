@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2023 Graz University of Technology.
+# Copyright (C) 2023-2024 Graz University of Technology.
 #
 # invenio-records-global-search is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
@@ -10,6 +10,7 @@
 
 from typing import ClassVar
 
+from invenio_indexer.api import RecordIndexer
 from invenio_records_resources.services import (
     RecordServiceConfig,
     SearchOptions,
@@ -46,6 +47,9 @@ class GlobalSearchRecordServiceConfig(RecordServiceConfig, ConfiguratorMixin):
     """Dublin Core record service config class."""
 
     record_cls = GlobalSearchRecord
+
+    indexer_cls = RecordIndexer
+    indexer_queue_name = "global-search-records"
 
     schema = FromConfig(
         "GLOBAL_SEARCH_SCHEMA",
