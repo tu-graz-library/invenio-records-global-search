@@ -11,6 +11,30 @@
 from flask import current_app
 from marshmallow import Schema, fields
 from marshmallow_utils.fields import SanitizedUnicode
+from marshmallow_utils.html import strip_html
+
+
+class StrippedHTMLList(fields.List):
+    """List field which strips HTML entities.
+
+    The value is stripped using the bleach library. Any already
+    escaped value is being unescaped before return.
+    """
+
+    def __init__(self, *args: dict, **kwargs: dict) -> None:
+        """Initialize field."""
+        super().__init__(*args, cls_or_instance=fields.Field, **kwargs)
+
+    def _serialize(
+        self,
+        value: list,
+        attr: str,
+        data: dict,
+        **kwargs: dict,
+    ) -> list[str]:
+        """Serialize list of strings by stripping HTML."""
+        values = super()._serialize(value, attr, data, **kwargs)
+        return [strip_html(value) for value in values]
 
 
 def access_status(_: dict) -> dict:
@@ -45,6 +69,33 @@ class OriginalSchema(Schema):
         return ""
 
 
+class MetadataSchema(Schema):
+    """Metadata."""
+
+    class Meta:
+        """Meta class to accept unknwon fields."""
+
+        additional = (
+            "creators",
+            "subjects",
+            "publishers",
+            "contributors",
+            "dates",
+            "types",
+            "formatts",
+            "identifiers",
+            "sources",
+            "languages",
+            "releations",
+            "coverages",
+            "rights",
+        )
+
+    titles = StrippedHTMLList(attributes="titles")
+
+    descriptions = StrippedHTMLList(attributes="descriptions")
+
+
 class GlobalSearchSchema(Schema):
     """Schema for dumping extra information for the global search record."""
 
@@ -56,7 +107,4 @@ class GlobalSearchSchema(Schema):
 
     created_date_l10n_long = fields.Function(created_date_l10n_long)
 
-    class Meta:
-        """Meta class to accept unknwon fields."""
-
-        additional = ("metadata",)
+    metadata = fields.Nested(MetadataSchema, attribute="metadata")
