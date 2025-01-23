@@ -21,9 +21,9 @@ class StrippedHTMLList(fields.List):
     escaped value is being unescaped before return.
     """
 
-    def __init__(self, attributes: str) -> None:
+    def __init__(self, attribute: str) -> None:
         """Initialize field."""
-        super().__init__(cls_or_instance=fields.Raw, attributes=attributes)
+        super().__init__(cls_or_instance=fields.Raw, attribute=attribute)
 
     def _serialize(  # type: ignore[override]
         self,
