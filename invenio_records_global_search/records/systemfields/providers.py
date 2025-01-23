@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2023-2024 Graz University of Technology.
+# Copyright (C) 2023-2025 Graz University of Technology.
 #
 # invenio-records-global-search is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
@@ -19,13 +19,13 @@ class GlobalSearchRecordProvider(RecordIdProviderV2):
     pid_type = "gs"
 
     @classmethod
-    def generate_id(cls: Self, _: dict | None = None) -> str:
+    def generate_id(cls, _: dict | None = None) -> str:
         """Generate id."""
         return cls.gs_pid
 
     @classmethod
     def create(
-        cls: Self,
+        cls,
         object_type: str | None = None,
         object_uuid: str | None = None,
         options: dict | None = None,

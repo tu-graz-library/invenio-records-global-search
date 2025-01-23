@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2023 Graz University of Technology.
+# Copyright (C) 2023-2025 Graz University of Technology.
 #
 # invenio-records-global-search is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
@@ -27,7 +27,7 @@ def rebuild_index() -> None:
     """Reindex all records."""
     click.secho("Reindexing records of global search...", fg="green")
 
-    service = current_records_global_search.records_service
+    service = current_records_global_search.records_service  # type: ignore[attr-defined]
     service.rebuild_index(identity=system_identity)
 
     click.secho("Reindexed records!", fg="green")

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2023-2024 Graz University of Technology.
+# Copyright (C) 2023-2025 Graz University of Technology.
 #
 # invenio-records-global-search is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
@@ -19,8 +19,8 @@ class OriginalComponent(ServiceComponent):
     def create(
         self,
         _: Identity,
-        data: dict | None = None,
-        record: Record | None = None,
+        data: dict,
+        record: Record,
         errors: dict | None = None,  # noqa: ARG002
         **__: dict,
     ) -> None:
@@ -30,8 +30,8 @@ class OriginalComponent(ServiceComponent):
     def update(
         self,
         _: Identity,
-        data: dict | None = None,
-        record: Record | None = None,
+        data: dict,
+        record: Record,
         **__: dict,
     ) -> None:
         """Inject parsed view to the record."""

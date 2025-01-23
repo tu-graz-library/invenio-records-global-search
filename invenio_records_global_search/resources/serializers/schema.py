@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2023-2024 Graz University of Technology.
+# Copyright (C) 2023-2025 Graz University of Technology.
 #
 # invenio-records-global-search is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
@@ -21,11 +21,11 @@ class StrippedHTMLList(fields.List):
     escaped value is being unescaped before return.
     """
 
-    def __init__(self, *args: dict, **kwargs: dict) -> None:
+    def __init__(self, attributes: str) -> None:
         """Initialize field."""
-        super().__init__(*args, cls_or_instance=fields.Field, **kwargs)
+        super().__init__(cls_or_instance=fields.Raw, attributes=attributes)
 
-    def _serialize(
+    def _serialize(  # type: ignore[override]
         self,
         value: list,
         attr: str,
@@ -34,7 +34,9 @@ class StrippedHTMLList(fields.List):
     ) -> list[str]:
         """Serialize list of strings by stripping HTML."""
         values = super()._serialize(value, attr, data, **kwargs)
-        return [strip_html(value) for value in values]
+        if values:
+            return [strip_html(value) for value in values]
+        return []
 
 
 def access_status(_: dict) -> dict:
