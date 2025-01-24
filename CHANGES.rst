@@ -8,6 +8,11 @@
 Changes
 =======
 
+Version v0.3.3 (release 2025-01-24)
+
+- setup: update ruff configuration
+
+
 Version v0.3.2 (release 2024-11-14)
 
 - fix: strip html tags
