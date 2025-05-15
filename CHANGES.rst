@@ -8,6 +8,13 @@
 Changes
 =======
 
+Version v0.3.4 (release 2025-05-15)
+
+- fix: setuptools require underscores instead of dashes
+- refactor: additional removed in marshmallow>=4
+- fix: naming of parameter
+
+
 Version v0.3.3 (release 2025-01-24)
 
 - setup: update ruff configuration
