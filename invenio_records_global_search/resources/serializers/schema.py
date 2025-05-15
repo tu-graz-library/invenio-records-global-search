@@ -74,28 +74,21 @@ class OriginalSchema(Schema):
 class MetadataSchema(Schema):
     """Metadata."""
 
-    class Meta:
-        """Meta class to accept unknwon fields."""
-
-        additional = (
-            "creators",
-            "subjects",
-            "publishers",
-            "contributors",
-            "dates",
-            "types",
-            "formatts",
-            "identifiers",
-            "sources",
-            "languages",
-            "releations",
-            "coverages",
-            "rights",
-        )
-
-    titles = StrippedHTMLList(attributes="titles")
-
-    descriptions = StrippedHTMLList(attributes="descriptions")
+    subjects = StrippedHTMLList(attribute="subjects")
+    publishers = StrippedHTMLList(attribute="publishers")
+    contributors = StrippedHTMLList(attribute="contributors")
+    dates = StrippedHTMLList(attribute="dates")
+    types = StrippedHTMLList(attribute="types")
+    formatts = StrippedHTMLList(attribute="formatts")
+    identifiers = StrippedHTMLList(attribute="identifiers")
+    sources = StrippedHTMLList(attribute="sources")
+    languages = StrippedHTMLList(attribute="languages")
+    releations = StrippedHTMLList(attribute="releations")
+    coverages = StrippedHTMLList(attribute="coverages")
+    rights = StrippedHTMLList(attribute="rights")
+    creators = StrippedHTMLList(attribute="creators")
+    titles = StrippedHTMLList(attribute="titles")
+    descriptions = StrippedHTMLList(attribute="descriptions")
 
 
 class GlobalSearchSchema(Schema):
