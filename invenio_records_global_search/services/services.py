@@ -1,18 +1,24 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2023-2024 Graz University of Technology.
+# Copyright (C) 2023-2025 Graz University of Technology.
 #
 # invenio-records-global-search is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
 """Global Search Services."""
+from typing import Any
 
+from flask import current_app
 from flask_principal import Identity
 from invenio_pidstore.errors import PIDDoesNotExistError
 from invenio_records_resources.services import RecordService
-from invenio_records_resources.services.records.results import RecordItem
+from invenio_records_resources.services.records.results import RecordItem, RecordList
 from invenio_records_resources.services.uow import UnitOfWork, unit_of_work
+
+from invenio_records_global_search.services.utils import (
+    replace_query_params_with_known_schema,
+)
 
 
 class GlobalSearchRecordService(RecordService):
@@ -42,3 +48,55 @@ class GlobalSearchRecordService(RecordService):
         except PIDDoesNotExistError:
             self.record_cls.gs_pid = gs_pid
             return self._create(self.record_cls, identity, data, uow=uow, expand=expand)
+
+    def search(
+        self,
+        identity: Identity,
+        params: dict | None = None,
+        search_preference: str | None = None,
+        expand: bool = False,  # noqa: FBT001, FBT002
+        **kwargs: Any,  # noqa: ANN401
+    ) -> RecordList:
+        """Search for records matching the querystring.
+
+        Method was overriden to rework query params that come as default from invenio-app-rdm
+        into the global-search schema structure.
+        """
+        try:
+            schema = self.config.schema
+            metadata_field = schema().fields.get("metadata")
+            metadata_schema = metadata_field.nested
+        except AttributeError:
+            current_app.logger("WARN: Schema unknown for query pre-processing")
+            return super().search(
+                identity,
+                params=params,
+                search_preference=search_preference,
+                expand=expand,
+                **kwargs,
+            )
+
+        if "q" not in params:
+            return super().search(
+                identity,
+                params=params,
+                search_preference=search_preference,
+                expand=expand,
+                **kwargs,
+            )
+
+        for metadata_field_name in metadata_schema().fields:
+            if metadata_field_name in params["q"]:
+                full_q = params["q"]
+                params["q"] = replace_query_params_with_known_schema(
+                    full_q,
+                    metadata_field_name,
+                )
+
+        return super().search(
+            identity,
+            params=params,
+            search_preference=search_preference,
+            expand=expand,
+            **kwargs,
+        )
