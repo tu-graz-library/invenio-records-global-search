@@ -12,11 +12,14 @@ from typing import Any
 from flask import current_app
 from flask_principal import Identity
 from invenio_pidstore.errors import PIDDoesNotExistError
+from invenio_rdm_records.proxies import current_rdm_records_service
 from invenio_records_resources.services import RecordService
 from invenio_records_resources.services.records.results import RecordItem, RecordList
 from invenio_records_resources.services.uow import UnitOfWork, unit_of_work
 
-from invenio_records_global_search.services.utils import (
+from .utils import (
+    build_gs_id_query,
+    remove_parent_id_q,
     replace_query_params_with_known_schema,
 )
 
@@ -84,6 +87,37 @@ class GlobalSearchRecordService(RecordService):
                 expand=expand,
                 **kwargs,
             )
+
+        query = params["q"]
+        if "parent.id" in query:
+            # For queries that depend on the original parent record:
+            # search for the original record because there is no connection
+            # between original-parent.id and gs.record.
+            # For now the workaround is implemented only for RDM-Records.
+            original_records = current_rdm_records_service.search(
+                identity,
+                params=params,
+                search_preference=search_preference,
+                expand=expand,
+                **kwargs,
+            )
+
+            # the query above returns only the final rdm-record version
+            last_version = next(original_records.hits)
+
+            # search for all versions based on the last published version
+            original_all_versions = current_rdm_records_service.search_versions(
+                identity,
+                last_version.get("id") or "",
+                params=params,
+                search_preference=search_preference,
+                expand=expand,
+                **kwargs,
+            )
+
+            # edit gs query
+            query_wo_pid = remove_parent_id_q(query)
+            params["q"] = build_gs_id_query(original_all_versions) + query_wo_pid
 
         for metadata_field_name in metadata_schema().fields:
             if metadata_field_name in params["q"]:

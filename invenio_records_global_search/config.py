@@ -62,6 +62,10 @@ GLOBAL_SEARCH_SORT_OPTIONS = {
         "title": _("Newest"),
         "fields": ["-created"],
     },
+    "version": {
+        "title": _("Version"),
+        "fields": ["version_id"],
+    },
 }
 
 GLOBAL_SEARCH_SEARCH = {
@@ -69,6 +73,7 @@ GLOBAL_SEARCH_SEARCH = {
     "sort": [
         "bestmatch",
         "newest",
+        "version",
     ],
 }
 
