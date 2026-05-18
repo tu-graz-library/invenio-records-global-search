@@ -1,1 +1,0 @@
-# invenio-records-global-search
