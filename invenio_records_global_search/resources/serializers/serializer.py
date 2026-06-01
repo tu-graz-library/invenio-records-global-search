@@ -8,7 +8,6 @@
 
 """Invenio Dublin Core Record Resource serializers."""
 
-
 from flask_resources import BaseListSchema, JSONSerializer
 from flask_resources.serializers import MarshmallowSerializer
 

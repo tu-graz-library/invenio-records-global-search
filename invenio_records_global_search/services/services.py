@@ -7,6 +7,7 @@
 # details.
 
 """Global Search Services."""
+
 from typing import Any
 
 from flask import current_app

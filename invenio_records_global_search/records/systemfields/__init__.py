@@ -8,7 +8,6 @@
 
 """System Fields for Global Search records."""
 
-
 from .context import GlobalSearchPIDFieldContext
 from .original import OriginalField
 from .providers import GlobalSearchRecordProvider

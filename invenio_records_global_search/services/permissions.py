@@ -7,6 +7,7 @@
 # details.
 
 """Global Search permission policy."""
+
 from typing import ClassVar
 
 from invenio_records_permissions.generators import AnyUser, RecordOwners, SystemProcess

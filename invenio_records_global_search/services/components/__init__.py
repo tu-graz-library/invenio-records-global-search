@@ -8,7 +8,6 @@
 
 """Components."""
 
-
 from invenio_records_resources.services.records.components import MetadataComponent
 
 from .original import OriginalComponent

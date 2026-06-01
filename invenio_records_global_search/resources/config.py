@@ -7,6 +7,7 @@
 # details.
 
 """Invenio Global Search Record Resource Config."""
+
 from typing import ClassVar
 
 from flask_resources import (
