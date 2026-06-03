@@ -1,5 +1,5 @@
 ..
-    Copyright (C) 2023-2025 Graz University of Technology.
+    Copyright (C) 2023-2026 Graz University of Technology.
 
     invenio-records-global-search is free software; you can redistribute it
     and/or modify it under the terms of the MIT License; see LICENSE file for
@@ -7,6 +7,12 @@
 
 Changes
 =======
+
+Version v0.4.0 (released 2026-06-03)
+
+- chore(black): update formatting to >= 26.0
+- chore(setup): bump dependencies
+- feat(search): add GLOBAL_SEARCH_NAV_TEMPLATE config
 
 Version v0.3.5 (released 2025-10-21)
 
