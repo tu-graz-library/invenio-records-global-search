@@ -8,6 +8,11 @@
 Changes
 =======
 
+Version v0.5.0 (released 2026-06-12)
+
+- fix: remove README.md
+- feat(cli): update database CLI functions
+
 Version v0.4.0 (released 2026-06-03)
 
 - chore(black): update formatting to >= 26.0
