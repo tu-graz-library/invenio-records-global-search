@@ -39,7 +39,8 @@
       },
       "original": {
         "properties": {
-          "schema": { "type": "keyword" }
+          "schema": { "type": "keyword" },
+          "created": { "type":  "date" }
         }
       }
     }

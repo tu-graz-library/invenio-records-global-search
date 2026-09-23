@@ -60,7 +60,7 @@ GLOBAL_SEARCH_SORT_OPTIONS = {
     },
     "newest": {
         "title": _("Newest"),
-        "fields": ["-created"],
+        "fields": ["-original.created"],
     },
     "version": {
         "title": _("Version"),
