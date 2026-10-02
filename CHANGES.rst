@@ -8,6 +8,10 @@
 Changes
 =======
 
+Version v0.6.0 (released 2026-10-02)
+
+- fix: newest sort by original created
+
 Version v0.5.0 (released 2026-06-12)
 
 - fix: remove README.md
