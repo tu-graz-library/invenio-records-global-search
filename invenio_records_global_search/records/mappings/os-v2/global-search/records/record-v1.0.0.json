@@ -40,7 +40,12 @@
       "original": {
         "properties": {
           "schema": { "type": "keyword" },
-          "created": { "type":  "date" }
+          "created": { "type":  "date" },
+          "access": {
+            "properties": {
+              "status": { "type": "keyword" }
+            }
+          }
         }
       }
     }

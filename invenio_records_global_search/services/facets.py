@@ -10,6 +10,9 @@
 
 from flask import current_app
 from invenio_i18n import gettext as _
+from invenio_rdm_records.records.systemfields.access.field.record import (
+    AccessStatusEnum,
+)
 from invenio_records_resources.services.records.facets import TermsFacet
 
 
@@ -21,6 +24,15 @@ def data_model_labels(schemas: list) -> dict:
         out[schema] = labels.get(schema, {}).get("name_l10n", schema)
     return out
 
+
+access = TermsFacet(
+    field="original.access.status",
+    label=_("Access Status"),
+    value_labels={
+        AccessStatusEnum.OPEN.value: _("Open"),
+        AccessStatusEnum.RESTRICTED.value: _("Restricted"),
+    },
+)
 
 data_model = TermsFacet(
     field="original.schema",
