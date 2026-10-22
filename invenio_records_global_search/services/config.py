@@ -25,7 +25,7 @@ from invenio_records_resources.services.base.config import (
 
 from ..records import GlobalSearchRecord
 from .components import DefaultRecordsComponents
-from .facets import data_model, formats, publishers, rights, subjects, types
+from .facets import access, data_model, formats, publishers, rights, subjects, types
 from .permissions import GlobalSearchRecordPermissionPolicy
 from .schemas import GlobalSearchRecordSchema
 
@@ -40,6 +40,7 @@ class GlobalSearchSearchOptions(SearchOptions, SearchOptionsMixin):
         "formats": formats,
         "rights": rights,
         "types": types,
+        "access": access,
     }
 
 

@@ -12,7 +12,15 @@ from typing import Any
 
 from invenio_i18n import gettext as _
 
-from .services.facets import data_model, formats, publishers, rights, subjects, types
+from .services.facets import (
+    access,
+    data_model,
+    formats,
+    publishers,
+    rights,
+    subjects,
+    types,
+)
 
 GLOBAL_SEARCH_FACETS: dict[str, dict[str, Any]] = {
     "data_model": {
@@ -51,6 +59,12 @@ GLOBAL_SEARCH_FACETS: dict[str, dict[str, Any]] = {
             "field": "metadata.types",
         },
     },
+    "access": {
+        "facet": access,
+        "ui": {
+            "field": "original.access.status",
+        },
+    },
 }
 
 GLOBAL_SEARCH_SORT_OPTIONS = {
@@ -69,7 +83,15 @@ GLOBAL_SEARCH_SORT_OPTIONS = {
 }
 
 GLOBAL_SEARCH_SEARCH = {
-    "facets": ["data_model", "subjects", "publishers", "formats", "rights", "types"],
+    "facets": [
+        "data_model",
+        "subjects",
+        "publishers",
+        "formats",
+        "rights",
+        "types",
+        "access",
+    ],
     "sort": [
         "bestmatch",
         "newest",

@@ -39,8 +39,16 @@ class StrippedHTMLList(fields.List):
         return []
 
 
-def access_status(_: dict) -> dict:
+def access_status(obj: dict) -> dict:
     """Access status."""
+    if obj["original"]["access"]["status"] == "restricted":
+        return {
+            "id": "restricted",
+            "icon": "lock",
+            "title_l10n": "Restricted files",
+            "description_l10n": "Restricted files",
+        }
+
     return {
         "id": "open",
         "icon": "unlock",
