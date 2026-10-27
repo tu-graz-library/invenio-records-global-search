@@ -57,7 +57,7 @@ def rebuild_database(model: str | None) -> None:
             raise click.ClickException(msg)
 
     for func in funcs:
-        func()
+        func.delay()
 
 
 @global_search.command()
@@ -78,4 +78,4 @@ def update_missing(model: str | None) -> None:
             raise click.ClickException(msg)
 
     for func in funcs:
-        func()
+        func.delay()
