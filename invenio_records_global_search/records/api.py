@@ -1,17 +1,13 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright (C) 2023-2024 Graz University of Technology.
-#
-# invenio-records-global-search is free software; you can redistribute it and/or
-# modify it under the terms of the MIT License; see LICENSE file for more
-# details.
+# SPDX-FileCopyrightText: 2023-2026 Graz University of Technology.
+# SPDX-License-Identifier: MIT
 
 """Records API."""
+
+from typing import Self
 
 from invenio_records.systemfields import ConstantField, DictField
 from invenio_records_resources.records.api import Record
 from invenio_records_resources.records.systemfields import IndexField, PIDField
-from typing_extensions import Self
 
 from .models import GlobalSearchMetadata
 from .systemfields import (
