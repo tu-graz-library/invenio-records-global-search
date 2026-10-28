@@ -1,14 +1,132 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright (C) 2023-2025 Graz University of Technology.
-#
-# invenio-records-global-search is free software; you can redistribute it and/or
-# modify it under the terms of the MIT License; see LICENSE file for more
-# details.
+# SPDX-FileCopyrightText: 2023-2026 Graz University of Technology.
+# SPDX-License-Identifier: MIT
+
+[project]
+name = "invenio-records-global-search"
+description = "InvenioRDM module for the Dublin Core data model"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Graz University of Technology." }]
+keywords = ["data model", "invenio", "rdm"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+urls = { Repository = "https://github.com/tu-graz-library/invenio-records-global-search" }
+dynamic = ["version"]
+
+dependencies = [
+  "invenio-indexer>=2.3.0",
+  "invenio-rdm-records>=19.0.0",
+  "invenio-records-resources>=4.11.3",
+  "invenio-search-ui>=2.8.0",
+]
+
+[project.entry-points."flask.commands"]
+global-search = "invenio_records_global_search.cli:global_search"
+
+[project.entry-points."invenio_assets.webpack"]
+invenio_records_global_search = "invenio_records_global_search.webpack:theme"
+
+[project.entry-points."invenio_base.api_apps"]
+invenio_records_global_search = "invenio_records_global_search:InvenioRecordsGlobalSearch"
+
+[project.entry-points."invenio_base.api_blueprints"]
+invenio_records_global_search = "invenio_records_global_search.views:create_record_bp"
+
+[project.entry-points."invenio_base.apps"]
+invenio_records_global_search = "invenio_records_global_search:InvenioRecordsGlobalSearch"
+
+[project.entry-points."invenio_base.blueprints"]
+invenio_records_global_search = "invenio_records_global_search.views:create_blueprint"
+
+[project.entry-points."invenio_base.finalize_app"]
+invenio_records_global_search = "invenio_records_global_search.ext:finalize_app"
+
+[project.entry-points."invenio_db.models"]
+invenio_records_global_search_model = "invenio_records_global_search.records.models"
+
+[project.entry-points."invenio_jsonschemas.schemas"]
+global-search = "invenio_records_global_search.records.jsonschemas"
+
+[project.entry-points."invenio_search.mappings"]
+global-search = "invenio_records_global_search.records.mappings"
+
+[project.optional-dependencies]
+tests = [
+  "invenio-app>=2.0.0",
+  "invenio-search[opensearch2]>=3.0.0,<4.0.0",
+  "pytest-black>=0.6.0",
+  "pytest-invenio>=4.0.0,<5.0.0",
+  "ruff>=0.0.263",
+]
 
 [build-system]
-requires = ["setuptools", "wheel", "babel>2.8"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.babel]
+[tool.babel.compile_catalog]
+directory = "invenio_records_global_search/translations/"
+
+[tool.babel.extract_messages]
+copyright_holder = "TU Graz"
+mapping_file = "pyproject.toml"
+output_file = "invenio_records_global_search/translations/messages.pot"
+add_comments = "NOTE"
+
+[tool.babel.init_catalog]
+input_file = "invenio_records_global_search/translations/messages.pot"
+output_dir = "invenio_records_global_search/translations/"
+
+[[tool.babel.mappings]]
+method = "javascript"
+pattern = "**.js"
+encoding = "utf-8"
+extract_messages = "$._, jQuery._"
+
+[[tool.babel.mappings]]
+method = "python"
+pattern = "**.py"
+encoding = "utf-8"
+
+[[tool.babel.mappings]]
+method = "jinja2"
+pattern = "**/templates/**.html"
+encoding = "utf-8"
+
+[tool.hatch.build]
+artifacts = [
+  "*.mo",
+]
+exclude = [
+  ".github/**",
+  "tests/**",
+  ".gitignore",
+  "run-tests.sh",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/invenio_records_global_search",
+]
+
+[tool.hatch.version]
+path = "invenio_records_global_search/__init__.py"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "--black --isort --cov=invenio_records_global_search --cov-report=term-missing"
+testpaths = "tests invenio_records_global_search"
 
 [tool.ruff]
 exclude = ["docs"]
@@ -16,14 +134,18 @@ exclude = ["docs"]
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-  "D203", "D211", "D212", "D213",
+  "D203",
+  "D211",
+  "D212",
+  "D213",
   "E501",
   "FA102",
   "RUF022",
-  "TC001", "TC002",
+  "TC001",
+  "TC002",
   "TID252",
   "UP009",
 ]
 
-[tool.mypy]
-ignore_missing_imports = true
+[tool.ruff.lint.flake8-copyright]
+notice-rgx = "(?i)# SPDX-FileCopyrightText:\\s\\d{4}(-(\\d{4}|present))*"
