@@ -5,6 +5,10 @@ SPDX-License-Identifier: MIT
 
 # Changes
 
+## Version v0.7.2 (released 2026-10-29)
+
+- fix(publish): trusted publisher
+
 ## Version v0.7.1 (released 2026-10-29)
 
 - fix(ci): trusted publisher needs permission
