@@ -5,6 +5,13 @@ SPDX-License-Identifier: MIT
 
 # Changes
 
+## Version v0.7.0 (released 2026-10-29)
+
+- chore(ci): use trusted publisher
+- chore: refactor
+- cli: trigger celery tasks
+- feat: save original access status
+
 ## Version v0.6.0 (released 2026-10-02)
 
 - fix: newest sort by original created
