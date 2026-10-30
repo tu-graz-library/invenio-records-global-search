@@ -26,6 +26,7 @@ access = TermsFacet(
     value_labels={
         AccessStatusEnum.OPEN.value: _("Open"),
         AccessStatusEnum.RESTRICTED.value: _("Restricted"),
+        AccessStatusEnum.METADATA_ONLY.value: _("Metadata-only"),
     },
 )
 
