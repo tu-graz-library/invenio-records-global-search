@@ -5,6 +5,11 @@ SPDX-License-Identifier: MIT
 
 # Changes
 
+## Version v0.7.4 (released 2026-11-04)
+
+- fix: include metadata-only facet
+- chore(publish): rename to build workflow
+
 ## Version v0.7.3 (released 2026-10-29)
 
 - fix(ci): missing v
