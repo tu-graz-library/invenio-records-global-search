@@ -40,13 +40,35 @@ class GlobalSearchRecordService(RecordService):
         gs_pid = "gs-" + data["original"]["pid"]
 
         try:
-            # only to check if a exists already
+            # only to check if a record exists already
             self.record_cls.pid.resolve(gs_pid)
 
             return self.update(identity, id_=gs_pid, data=data)
         except PIDDoesNotExistError:
             self.record_cls.gs_pid = gs_pid
             return self._create(self.record_cls, identity, data, uow=uow, expand=expand)
+
+    @unit_of_work()
+    def create_or_update_batch(
+        self,
+        identity: Identity,
+        data: list[dict],
+        uow: UnitOfWork | None = None,
+    ) -> RecordItem:
+        """Create or update a batch of records.
+
+        Args:
+            identity: Identity of user creating the record.
+            data: Input data according to the data schema.
+            uow: Unit of work.
+
+        """
+        many_data = []
+        for rec in data:
+            gs_pid = "gs-" + rec["original"]["pid"]
+            many_data.append((gs_pid, rec))
+
+        return self.create_or_update_many(identity, many_data, uow=uow)
 
     def search(
         self,
