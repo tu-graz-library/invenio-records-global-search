@@ -5,6 +5,11 @@ SPDX-License-Identifier: MIT
 
 # Changes
 
+## Version v0.8.0 (released 2026-11-24)
+
+- fix(service): override create_update_many
+- feat: create or update batch service method
+
 ## Version v0.7.4 (released 2026-11-04)
 
 - fix: include metadata-only facet
